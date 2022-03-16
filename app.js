@@ -16,8 +16,10 @@ async function searchGiphy() {
   });
   console.log("searchGiphy response data =", response);
 
-  console.log(response.data.data["0"].images.original.url);
-  appendGif(response.data.data["0"].images.original.url);
+  const randomIndex = randomInt(50);
+
+  //   console.log(response.data.data.randomIndex.images.original.url);
+  appendGif(response.data.data[randomIndex].images.original.url);
 }
 
 $("#search").on("click", searchGiphy);
@@ -33,8 +35,13 @@ function appendGif(url) {
   console.log("$image=", $image);
 
   $results.append($image);
+  $("input").val("");
 }
 
 function clearGifs() {
   $("#results").empty();
+}
+
+function randomInt(max) {
+  return Math.floor(Math.random() * max);
 }
